@@ -1,31 +1,41 @@
 var adatok = []
-var ferfiszam
-var noszam
-var eletkor
+var atlagferfi = 0
+var atlagnoi = 0
 function Ok() {
+    var ferfiszam = 0
+    var noszam = 0
+    var ferfieletkor = 0
+    var noieletkor = 0
     var obj = {
       ferfi: document.getElementById("ferfi").checked,
       no: document.getElementById("no").checked,
       eletkor: parseInt(document.getElementById("Eletkor").value)
     };
     adatok.push(obj);
-    /* var ferfiszam = document.getElementById("ferfiszam").innerHTML = adatok.ferfi.count()
-    var noszam = document.getElementById("noszam").innerHTML = adatok.no.count() */
 
-     
     for (let i = 0; i < adatok.length; i++) 
     {
         if (adatok[i].ferfi == true) {
-            ferfiszam++    
+            ferfiszam++
+            ferfieletkor += adatok[i].eletkor
         }
-        else{
+        else
+        {
             noszam++
+            noieletkor += adatok[i].eletkor
         }
-        eletkor += adatok[i].eletkor
     }
+    AtlagElet(ferfieletkor, ferfiszam, noieletkor, noszam)
     document.getElementById("ferfiszam").innerHTML = ferfiszam
     document.getElementById("noszam").innerHTML = noszam
-    document.getElementById("ferfiatlag").innerHTML = eletkor
-    document.getElementById("noiatlag").innerHTML = eletkor
+    document.getElementById("ferfiatlag").innerHTML = atlagferfi
+    document.getElementById("noatlag").innerHTML = atlagnoi
     
+}
+
+
+function AtlagElet(ferfieletkor, ferfiszam, noieletkor, noszam) 
+{
+    atlagferfi = ferfieletkor/ferfiszam    
+    atlagnoi = noieletkor/noszam
 }
